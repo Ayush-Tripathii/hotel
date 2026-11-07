@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
@@ -17,11 +17,16 @@ import Footer from './components/Footer';
 import StickyMobileBooking from './components/StickyMobileBooking';
 import AmbientSound from './components/AmbientSound';
 import BookingModal from './components/BookingModal';
+import { initGlobalClickSounds } from './utils/soundEffects';
 
 export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [bookingInitialData, setBookingInitialData] = useState({});
   const [preloaderFinished, setPreloaderFinished] = useState(false);
+
+  useEffect(() => {
+    initGlobalClickSounds();
+  }, []);
 
   const handleOpenBooking = (data = {}) => {
     setBookingInitialData(data);
